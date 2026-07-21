@@ -191,6 +191,7 @@ h3 {
 .topic {
   padding: 34px 0;
   border-bottom: 1px solid var(--rule);
+  display: flow-root; /* contains floated figures so they can't spill into the next topic */
 }
 
 .topic:last-child { border-bottom: none; }
@@ -202,6 +203,29 @@ h3 {
   font-size: 13px;
   color: var(--accent);
   margin-top: 10px;
+}
+
+/* ---------- Patents list (hero) ---------- */
+
+ul.patents {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 74ch;
+}
+
+ul.patents li {
+  font-size: 17px;
+  color: var(--ink-soft);
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+ul.patents li:last-child { border-bottom: none; }
+
+ul.patents a {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ---------- Publications ---------- */
@@ -253,6 +277,117 @@ ol.pubs li em { color: var(--ink-soft); }
 address {
   font-style: normal;
   color: var(--ink-soft);
+}
+
+/* ---------- Images ---------- */
+
+/* Base: every image scales down, never overflows its container. */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* A figure with an optional caption. Use for single images in a text flow.
+   max-width controls how big images render — lower it if they still feel too large. */
+figure {
+  margin: 30px 0;
+  max-width: 580px;
+}
+
+figure img {
+  width: 100%;
+  border: 1px solid var(--rule);
+}
+
+figcaption {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin-top: 9px;
+  max-width: 62ch;
+}
+
+/* Float a figure beside text on wide screens. */
+figure.side {
+  float: right;
+  width: 44%;
+  margin: 6px 0 22px 34px;
+}
+
+@media (max-width: 720px) {
+  figure.side { float: none; width: 100%; margin: 24px 0; }
+}
+
+/* A row of images that reflows on narrow screens.
+   The 230px minimum sets how wide each tile gets before the row rewraps —
+   raise it for fewer, bigger tiles; lower it for more, smaller ones. */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+  margin: 30px 0;
+}
+
+.gallery figure { margin: 0; max-width: none; }
+
+/* Square-cropped thumbnails, useful when source images vary in shape. */
+.gallery.square img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* Image at the top of a card on the home page. */
+.card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+  margin-bottom: 14px;
+}
+
+/* ---------- Hero with background image ---------- */
+
+/* Add class "photo" to .hero and set --hero-image inline on the element.
+   The gradient keeps text legible over any photograph. */
+.hero.photo {
+  position: relative;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.88) 45%, rgba(255,255,255,0.55) 100%),
+    var(--hero-image);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Dark variant: white text over a darkened photograph. */
+.hero.photo.dark {
+  background-image:
+    linear-gradient(to right, rgba(20,20,32,0.93) 0%, rgba(20,20,32,0.78) 55%, rgba(20,20,32,0.5) 100%),
+    var(--hero-image);
+  color: var(--paper);
+}
+
+.hero.photo.dark h1 { color: var(--paper); }
+.hero.photo.dark p.lede { color: rgba(255,255,255,0.86); }
+.hero.photo.dark .kicker { color: var(--accent-light); }
+
+.hero.photo.dark .btn {
+  border-color: rgba(255,255,255,0.6);
+  color: var(--paper);
+}
+
+.hero.photo.dark .btn:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Subtle repeating texture for tinted sections. */
+.tint.texture {
+  background-image:
+    linear-gradient(rgba(246,244,240,0.94), rgba(246,244,240,0.94)),
+    var(--texture-image);
+  background-size: auto, 420px;
 }
 
 /* ---------- Footer ---------- */
