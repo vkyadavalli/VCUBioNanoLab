@@ -192,22 +192,21 @@ section.pi { border-bottom: 1px solid var(--rule); }
 
 .pi-grid {
   display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 44px;
+  grid-template-columns: 96px 1fr;
+  gap: 28px;
   align-items: start;
 }
 
 .pi-photo {
-  width: 220px;
-  height: 220px;
+  width: 96px;
+  height: 96px;
   object-fit: cover;
   border-radius: 50%;
   border: 1px solid var(--rule);
 }
 
 @media (max-width: 720px) {
-  .pi-grid { grid-template-columns: 1fr; gap: 24px; }
-  .pi-photo { width: 160px; height: 160px; }
+  .pi-grid { grid-template-columns: 1fr; gap: 16px; }
 }
 
 .pi-titles {
