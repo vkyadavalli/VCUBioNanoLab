@@ -228,6 +228,24 @@ section.pi { border-bottom: 1px solid var(--rule); }
 
 .pi-links a { color: var(--accent); }
 
+/* ---------- Research areas overview ---------- */
+
+section.areas { padding: 44px 0; border-bottom: 1px solid var(--rule); }
+
+a.card.area {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 22px 24px;
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--accent);
+  background: var(--paper);
+}
+
+a.card.area:hover { border-color: var(--accent); }
+
+section[id] { scroll-margin-top: 90px; }
+
 /* ---------- Research detail ---------- */
 
 .topic {
